@@ -5,7 +5,6 @@ const links = [
   { href: '#build', label: 'Build' },
   { href: '#specs', label: 'Specifications' },
   { href: '#interior', label: 'Interior' },
-  { href: '#audio', label: 'Audio' },
   { href: '#cost', label: 'Budget' },
 ];
 

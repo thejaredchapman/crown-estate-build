@@ -7,7 +7,6 @@ import Specifications from './components/Specifications';
 import Philosophy from './components/Philosophy';
 import Budget from './components/Budget';
 import Interior from './components/Interior';
-import Audio from './components/Audio';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -53,8 +52,6 @@ export default function App() {
       <Budget />
       <hr className="divider" />
       <Interior />
-      <hr className="divider" />
-      <Audio />
       <Footer />
     </>
   );

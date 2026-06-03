@@ -18,15 +18,10 @@ const rows = [
   { item: 'BRZ / Toyota 86 Torsen LSD (G-series bolt-in)',       phase: '03 — Chassis', type: 'Parts',     cost: '$200 – $600' },
   { item: 'Labor — swap, install, fabrication',                  phase: 'All Phases',   type: 'Shop',      cost: '$1,500 – $2,500' },
   { item: 'Shift Sync OLED carbon fibre gear knob',              phase: 'Interior',     type: 'Parts',     cost: '~$200 – $350' },
-  { item: 'JL Audio 12W6v3 subwoofer + sealed enclosure',        phase: 'Audio',        type: 'Parts',     cost: '$400 – $600' },
-  { item: 'JL Audio RD500/1 mono amplifier',                     phase: 'Audio',        type: 'Parts',     cost: '$250 – $350' },
-  { item: 'JL Audio RD400/4 + C2 component speakers',            phase: 'Audio',        type: 'Parts',     cost: '$500 – $800' },
-  { item: 'Head unit (CarPlay) + wiring + sound deadening',      phase: 'Audio',        type: 'Parts',     cost: '$350 – $600' },
-  { item: 'Audio install labor',                                 phase: 'Audio',        type: 'Service',   cost: '$400 – $700' },
 ];
 
-// low: 1200+400+400 + 800+600+500+800+300+800+450+500+400+900+500 + 200+1500 + 200 + 400+250+500+350+400 = $12,350
-// high: 2000+800+700 + 1500+1000+900+1500+500+1400+700+900+700+1200+1500 + 600+2500 + 350 + 600+350+800+600+700 = $21,800
+// low:  1200+400+400 + 800+600+500+800+300+800+450+500+400+900+500 + 200+1500 + 200 = $10,450
+// high: 2000+800+700 + 1500+1000+900+1500+500+1400+700+900+700+1200+1500 + 600+2500 + 350 = $18,750
 
 export default function Budget() {
   return (
@@ -61,7 +56,7 @@ export default function Budget() {
                 <strong>Grand Total</strong>
                 <span className={styles.totalNote}>Full build — all three phases</span>
               </td>
-              <td className={`${styles.costRange} ${styles.totalCost}`}>$12,350 – $21,800</td>
+              <td className={`${styles.costRange} ${styles.totalCost}`}>$10,450 – $18,750</td>
             </tr>
           </tbody>
         </table>
