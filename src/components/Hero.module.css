@@ -1,0 +1,171 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200,169,110,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(192,57,43,0.05) 0%, transparent 60%),
+    var(--bg);
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 40%, transparent 100%);
+}
+
+.chassis {
+  position: absolute;
+  top: 2rem; right: 3rem;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12rem;
+  font-weight: 700;
+  color: rgba(200,169,110,0.04);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+:global([data-theme="light"]) .chassis {
+  color: rgba(120, 90, 40, 0.07);
+}
+
+.tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+  position: relative;
+  z-index: 1;
+}
+
+.h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.4s forwards;
+  position: relative;
+  z-index: 1;
+}
+
+.h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.sub {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 480px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.6s forwards;
+  position: relative;
+  z-index: 1;
+}
+
+.stats {
+  position: absolute;
+  right: 3rem;
+  bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-end;
+  opacity: 0;
+  animation: fadeIn 1s ease 1s forwards;
+  z-index: 1;
+}
+
+.stat { text-align: right; }
+
+.statNum {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.8rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.statUnit {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.statLabel {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.4s forwards;
+  z-index: 1;
+}
+
+.scroll span {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+  animation: scrollPulse 2s ease infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50%       { opacity: 0.3; transform: scaleY(0.7); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 0 1.5rem 4rem; }
+  .stats { display: none; }
+  .chassis { font-size: 5rem; right: 1rem; }
+}

@@ -1,0 +1,103 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin-top: 3rem;
+}
+
+.block {
+  background: var(--surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-border);
+  padding: 2.5rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.block:hover {
+  border-color: rgba(200,169,110,0.2);
+  background: var(--surface-hover);
+}
+
+/* spans full width of the 2-col grid */
+.span {
+  grid-column: 1 / -1;
+}
+
+/* 1.5JZ stroker block — gold top accent to signal it's the headline engine spec */
+.optional {
+  border-top: 2px solid var(--accent);
+}
+
+.blockTitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--surface-border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.optBadge {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--surface-border);
+  padding: 0.15em 0.55em;
+  margin-left: auto;
+}
+
+/* two-column row layout for the span block */
+.spanRows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 3rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  gap: 1rem;
+}
+
+[data-theme="light"] .row {
+  border-bottom-color: rgba(0,0,0,0.04);
+}
+
+.key {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--text);
+  text-align: right;
+  font-weight: 400;
+}
+
+.val.highlight {
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .span { grid-column: unset; }
+  .spanRows { grid-template-columns: 1fr; }
+}

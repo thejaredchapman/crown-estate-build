@@ -1,0 +1,145 @@
+.intro {
+  color: var(--muted);
+  max-width: 580px;
+}
+
+.tableWrap {
+  margin-top: 2.5rem;
+  border: 1px solid var(--surface-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.table th {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: left;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid var(--surface-border);
+  background: rgba(255,255,255,0.03);
+}
+
+.table td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  vertical-align: middle;
+  color: var(--muted);
+  background: transparent;
+}
+
+[data-theme="light"] .table td {
+  border-bottom-color: rgba(0,0,0,0.04);
+}
+
+.table td:first-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+.table tbody tr:hover td {
+  background: rgba(255,255,255,0.03);
+}
+
+[data-theme="light"] .table tbody tr:hover td {
+  background: rgba(0,0,0,0.02);
+}
+
+.phaseTag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.typeCell {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
+
+.costRange {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* optional phase 4 rows */
+.optionalRow td {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.optionalRow:hover td {
+  opacity: 1;
+}
+
+.optBadge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--surface-border);
+  padding: 0.1em 0.45em;
+  margin-left: 0.7rem;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  font-style: normal;
+}
+
+/* total rows */
+.totalRow td {
+  background: rgba(200,169,110,0.06) !important;
+  border-top: 1px solid rgba(200,169,110,0.2);
+  border-bottom: none;
+  color: var(--text) !important;
+  vertical-align: middle;
+}
+
+.totalRowAlt td {
+  background: rgba(200,169,110,0.10) !important;
+  border-top: 1px solid rgba(200,169,110,0.25);
+}
+
+.totalLabel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem !important;
+  color: var(--text) !important;
+  line-height: 1.3;
+}
+
+.totalNote {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 0.2rem;
+}
+
+.totalCost {
+  color: var(--accent2) !important;
+  font-size: 0.9rem !important;
+}
+
+@media (max-width: 768px) {
+  .phaseCol { display: none; }
+}
