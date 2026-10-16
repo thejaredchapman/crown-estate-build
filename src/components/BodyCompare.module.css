@@ -52,11 +52,18 @@
 
 .diff { color: var(--muted); white-space: nowrap; }
 
+.method {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 80ch;
+}
+
 .effects {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
-  margin-top: 6px;
+  margin-top: 1.75rem;
 }
 
 .effect {

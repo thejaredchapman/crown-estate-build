@@ -1,6 +1,7 @@
 import SectionHeading from './SectionHeading';
 import SpecList from './SpecList';
 import { POWER_TARGET_WHP, kg, mm, ratio } from '../data/bodies';
+import { SETUPS, fmtSec, zeroToSixty } from '../data/acceleration';
 import styles from './Specifications.module.css';
 
 function donorBlock(body) {
@@ -14,6 +15,8 @@ function donorBlock(body) {
       { key: 'Length', val: mm(body.length) },
       { key: 'Kerb Weight', val: kg(body.weight), highlight: true },
       { key: 'Built power-to-weight', val: `${ratio(body.weight, POWER_TARGET_WHP)} kg/whp` },
+      { key: '0–60 mph, stock (est.)', val: fmtSec(zeroToSixty(body.weight, SETUPS.stock)) },
+      { key: '0–60 mph, built (est.)', val: fmtSec(zeroToSixty(body.weight, SETUPS.built)), highlight: true },
       { key: 'Drivetrain', val: 'RWD' },
       { key: 'Suspension', val: 'Double Wishbone F&R' },
     ],

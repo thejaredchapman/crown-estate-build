@@ -1,12 +1,13 @@
 import { POWER_TARGET_WHP, ratio } from '../data/bodies';
+import { SETUPS, zeroToSixty } from '../data/acceleration';
 import styles from './Hero.module.css';
 
 export default function Hero({ body }) {
   const stats = [
     { num: POWER_TARGET_WHP, unit: 'whp', label: 'Power target' },
     { num: ratio(body.weight, POWER_TARGET_WHP), unit: 'kg/whp', label: `At ${body.weight.toLocaleString('en-US')} kg kerb` },
+    { num: zeroToSixty(body.weight, SETUPS.built).toFixed(1), unit: 's', label: '0–60 mph built, estimated' },
     { num: 'R154', label: '5-speed manual' },
-    { num: '1JZ', label: 'GTE VVT-i, stroked' },
   ];
 
   return (

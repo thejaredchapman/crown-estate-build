@@ -1,6 +1,7 @@
 import SectionHeading from './SectionHeading';
 import BodyToggle from './BodyToggle';
 import { BODIES, POWER_TARGET_WHP, STOCK_PS, kg, mm, ratio } from '../data/bodies';
+import { ACCEL_ASSUMPTIONS, SETUPS, fmtSec, zeroToSixty } from '../data/acceleration';
 import styles from './BodyCompare.module.css';
 
 const { estate, sedan } = BODIES;
@@ -15,6 +16,16 @@ function ratioDiff(a, b) {
   const d = Number(b) - Number(a);
   return `${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(2)}`;
 }
+
+function secDiff(a, b) {
+  const d = Math.round((b - a) * 10) / 10;
+  if (d === 0) return 'Same';
+  return `${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(1)} s`;
+}
+
+const sixty = Object.fromEntries(
+  Object.keys(SETUPS).map((k) => [k, { estate: zeroToSixty(estate.weight, SETUPS[k]), sedan: zeroToSixty(sedan.weight, SETUPS[k]) }]),
+);
 
 const rows = [
   { key: 'Chassis code', estate: estate.chassis, sedan: sedan.chassis },
@@ -36,6 +47,19 @@ const rows = [
     estate: ratio(estate.weight, POWER_TARGET_WHP),
     sedan: ratio(sedan.weight, POWER_TARGET_WHP),
     diff: ratioDiff(ratio(estate.weight, POWER_TARGET_WHP), ratio(sedan.weight, POWER_TARGET_WHP)),
+    emphasis: true,
+  },
+  {
+    key: '0–60 mph, stock (est.)',
+    estate: fmtSec(sixty.stock.estate),
+    sedan: fmtSec(sixty.stock.sedan),
+    diff: secDiff(sixty.stock.estate, sixty.stock.sedan),
+  },
+  {
+    key: '0–60 mph, built (est.)',
+    estate: fmtSec(sixty.built.estate),
+    sedan: fmtSec(sixty.built.sedan),
+    diff: secDiff(sixty.built.estate, sixty.built.sedan),
     emphasis: true,
   },
   { key: 'Behind the rear seat', estate: estate.rearSpace, sedan: sedan.rearSpace },
@@ -81,11 +105,15 @@ export default function BodyCompare({ body, onBodyChange }) {
         </table>
       </div>
 
+      <p className={styles.method}>
+        No measured 0–60 times exist for the JZS171, so these are estimates from a simple simulation run identically for both bodies: kerb weight plus a {ACCEL_ASSUMPTIONS.driverKg} kg driver, {Math.round(ACCEL_ASSUMPTIONS.avgPowerShare * 100)}% of peak wheel power on average, {Math.round(ACCEL_ASSUMPTIONS.rearLoadShare * 100)}% of the weight on the rear tyres at launch, and one gear change. Expect real runs to vary by a few tenths with tyres, surface and launch.
+      </p>
+
       <div className={styles.effects}>
         <div className={styles.effect}>
           <h3>Acceleration</h3>
           <p>
-            At {POWER_TARGET_WHP} whp the sedan works out to {ratio(sedan.weight, POWER_TARGET_WHP)} kg/whp against the Estate&apos;s {ratio(estate.weight, POWER_TARGET_WHP)}. When the car is power-limited, that is about {lighterPct}% more acceleration for the same tune.
+            Stock, the 280 PS car is power-limited, so the sedan&apos;s lighter body is worth about {(sixty.stock.estate - sixty.stock.sedan).toFixed(1)} s to 60. Built, both run about {sixty.built.sedan.toFixed(1)} s: at {POWER_TARGET_WHP} whp the rear tyres are the limit, and a heavier car presses them harder. The sedan&apos;s {ratio(sedan.weight, POWER_TARGET_WHP)} kg/whp pays off above 60.
           </p>
         </div>
         <div className={styles.effect}>
