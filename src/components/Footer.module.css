@@ -1,29 +1,17 @@
 .footer {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 3rem;
+  border-top: 3px solid var(--telop);
+  padding: 2.5rem var(--gutter);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: var(--panel);
 }
 
-.logo {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  color: rgba(255,255,255,0.15);
-  text-transform: uppercase;
-}
-
-.chassis {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.15);
-  letter-spacing: 0.1em;
-}
+.ja { font-family: var(--font-display); }
 
 @media (max-width: 768px) {
-  .footer { flex-direction: column; gap: 1rem; text-align: center; }
+  .footer { flex-direction: column; text-align: center; }
 }

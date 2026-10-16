@@ -1,0 +1,101 @@
+.toggleRow { margin: 2rem 0 1.5rem; }
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: baseline;
+}
+
+.table thead th {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1rem;
+  background: var(--panel-2);
+  border-bottom: 3px solid var(--line);
+}
+
+.table thead th.active {
+  background: var(--telop);
+  color: var(--on-telop);
+  border-bottom-color: var(--signal);
+}
+
+.table tbody th {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.table tbody tr:last-child > * { border-bottom: 0; }
+
+.activeCell {
+  font-weight: 700;
+  background: color-mix(in srgb, var(--telop) 10%, transparent);
+}
+
+.keyRow > * { font-size: 1.05rem; }
+.keyRow .diff { color: var(--accent); font-weight: 700; }
+
+.diff { color: var(--muted); white-space: nowrap; }
+
+.effects {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.effect {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--cyan);
+  padding: 1.5rem;
+}
+
+.effect h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.effect p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 1000px) {
+  .effects { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .effects { grid-template-columns: 1fr; }
+  .table { min-width: 0; font-size: 0.78rem; }
+  .table th, .table td { padding: 0.55rem 0.45rem; }
+  .table thead th { font-size: 0.8rem; }
+  .keyRow > * { font-size: 0.85rem; }
+  .diff { white-space: normal; }
+}

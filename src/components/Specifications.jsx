@@ -1,48 +1,28 @@
+import SectionHeading from './SectionHeading';
+import SpecList from './SpecList';
+import { POWER_TARGET_WHP, kg, mm, ratio } from '../data/bodies';
 import styles from './Specifications.module.css';
 
-function SpecBlock({ title, rows, delay, span, optional }) {
-  return (
-    <div
-      className={[
-        styles.block,
-        span ? styles.span : '',
-        optional ? styles.optional : '',
-        'reveal',
-      ].join(' ')}
-      style={delay ? { transitionDelay: delay } : undefined}
-    >
-      <div className={styles.blockTitle}>
-        {title}
-      </div>
-      <div className={span ? styles.spanRows : undefined}>
-        {rows.map(({ key, val, highlight }) => (
-          <div className={styles.row} key={key}>
-            <span className={styles.key}>{key}</span>
-            <span className={`${styles.val} ${highlight ? styles.highlight : ''}`}>{val}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-const blocks = [
-  {
-    title: 'Donor Platform',
+function donorBlock(body) {
+  return {
+    title: `Donor Platform: ${body.name}`,
     rows: [
-      { key: 'Chassis', val: 'JZS171W' },
-      { key: 'Body', val: '5-door Wagon / Estate' },
-      { key: 'Production', val: 'Dec 1999 – 2003' },
-      { key: 'Wheelbase', val: '2,780 mm' },
-      { key: 'Length', val: '4,835 mm' },
-      { key: 'Kerb Weight', val: '1,680 kg' },
+      { key: 'Chassis', val: body.chassis, highlight: true },
+      { key: 'Body', val: body.style },
+      { key: 'Production', val: body.production },
+      { key: 'Wheelbase', val: mm(body.wheelbase) },
+      { key: 'Length', val: mm(body.length) },
+      { key: 'Kerb Weight', val: kg(body.weight), highlight: true },
+      { key: 'Built power-to-weight', val: `${ratio(body.weight, POWER_TARGET_WHP)} kg/whp` },
       { key: 'Drivetrain', val: 'RWD' },
       { key: 'Suspension', val: 'Double Wishbone F&R' },
     ],
-  },
+  };
+}
+
+const buildBlocks = [
   {
     title: 'Engine — 1JZ-GTE VVT-i',
-    delay: '0.1s',
     rows: [
       { key: 'Config', val: '2.5L Inline-6 Turbo' },
       { key: 'Displacement', val: '2,491 cc' },
@@ -56,7 +36,6 @@ const blocks = [
   },
   {
     title: 'Transmission',
-    delay: '0.15s',
     rows: [
       { key: 'Type', val: 'R154 5-speed Manual', highlight: true },
       { key: 'Donor Source', val: 'JZX100 Chaser/Mark II' },
@@ -69,7 +48,6 @@ const blocks = [
   },
   {
     title: 'Differential',
-    delay: '0.2s',
     rows: [
       { key: 'Stock', val: 'Open diff — G-series' },
       { key: 'Upgrade', val: 'BRZ / Toyota 86 Torsen LSD', highlight: true },
@@ -81,9 +59,7 @@ const blocks = [
   },
   {
     title: 'Engine — 1.5JZ Stroker',
-    delay: '0.25s',
     span: true,
-    optional: false,
     rows: [
       { key: 'Base Engine', val: '1JZ-GTE VVT-i (existing unit)' },
       { key: 'Stroke', val: '77–84 mm (vs stock 71.5 mm)', highlight: true },
@@ -101,15 +77,20 @@ const blocks = [
   },
 ];
 
-export default function Specifications() {
+export default function Specifications({ body }) {
+  const blocks = [donorBlock(body), ...buildBlocks];
   return (
     <section id="specs" className="section-base">
-      <div className="section-label reveal">Technical Reference</div>
-      <h2 className="section-title reveal">Build Specifications</h2>
-
+      <SectionHeading title="Build Specifications" ja="仕様書" />
       <div className={styles.layout}>
         {blocks.map((block) => (
-          <SpecBlock key={block.title} {...block} />
+          <SpecList
+            key={block.title}
+            title={block.title}
+            rows={block.rows}
+            columns={block.span ? 2 : 1}
+            className={block.span ? styles.span : ''}
+          />
         ))}
       </div>
     </section>

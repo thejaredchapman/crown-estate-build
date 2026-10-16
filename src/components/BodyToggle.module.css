@@ -1,0 +1,39 @@
+.toggle {
+  display: inline-flex;
+  border: 2px solid var(--telop);
+  background: var(--bg);
+}
+
+.option {
+  font: inherit;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  transition: background 0.15s, color 0.15s;
+}
+
+.option[aria-checked="true"] {
+  background: var(--telop);
+  color: var(--on-telop);
+}
+
+.option:not([aria-checked="true"]):hover { background: var(--panel-2); }
+
+.ja {
+  font-weight: 400;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.small .option { font-size: 0.8rem; padding: 0.35em 0.8em; }
+.large .option { font-size: 1.05rem; padding: 0.6em 1.3em; }
+
+@media (max-width: 520px) {
+  .small .ja { display: none; }
+}

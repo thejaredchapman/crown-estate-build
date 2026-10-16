@@ -1,145 +1,87 @@
-.intro {
-  color: var(--muted);
-  max-width: 580px;
-}
-
 .tableWrap {
   margin-top: 2.5rem;
-  border: 1px solid var(--surface-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow-x: auto;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.table thead th {
+  font-family: var(--font-display);
+  font-weight: 400;
   font-size: 0.95rem;
-}
-
-.table th {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
   text-align: left;
-  padding: 0.8rem 1.2rem;
-  border-bottom: 1px solid var(--surface-border);
-  background: rgba(255,255,255,0.03);
+  padding: 0.85rem 1.1rem;
+  background: var(--panel-2);
+  border-bottom: 3px solid var(--telop);
 }
 
-.table td {
-  padding: 1rem 1.2rem;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
+.table td,
+.table tbody th {
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--line);
   vertical-align: middle;
   color: var(--muted);
-  background: transparent;
+  text-align: left;
 }
 
-[data-theme="light"] .table td {
-  border-bottom-color: rgba(0,0,0,0.04);
-}
-
-.table td:first-child {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+.table tbody th {
+  font-weight: 500;
   color: var(--text);
-  font-weight: 400;
 }
 
-.table tbody tr:hover td {
-  background: rgba(255,255,255,0.03);
-}
-
-[data-theme="light"] .table tbody tr:hover td {
-  background: rgba(0,0,0,0.02);
-}
+.table tbody tr:hover > * { background: var(--panel-2); }
 
 .phaseTag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  white-space: nowrap;
 }
 
-.typeCell {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-}
+.typeCell { font-size: 0.8rem; }
 
-.costRange {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--accent);
+.table .costRange,
+.table thead .costCol {
   text-align: right;
   white-space: nowrap;
 }
 
-/* optional phase 4 rows */
-.optionalRow td {
-  opacity: 0.6;
-  font-style: italic;
+.costRange {
+  font-weight: 700;
+  color: var(--text);
 }
 
-.optionalRow:hover td {
-  opacity: 1;
-}
-
-.optBadge {
-  display: inline-block;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.5rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--surface-border);
-  padding: 0.1em 0.45em;
-  margin-left: 0.7rem;
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
-  font-style: normal;
-}
-
-/* total rows */
 .totalRow td {
-  background: rgba(200,169,110,0.06) !important;
-  border-top: 1px solid rgba(200,169,110,0.2);
-  border-bottom: none;
-  color: var(--text) !important;
-  vertical-align: middle;
+  background: var(--telop) !important;
+  color: var(--on-telop);
+  border-bottom: 0;
 }
 
-.totalRowAlt td {
-  background: rgba(200,169,110,0.10) !important;
-  border-top: 1px solid rgba(200,169,110,0.25);
-}
-
-.totalLabel {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem !important;
-  color: var(--text) !important;
-  line-height: 1.3;
+.totalLabel strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15rem;
 }
 
 .totalNote {
   display: block;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 400;
-  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.15rem;
 }
 
-.totalCost {
-  color: var(--accent2) !important;
-  font-size: 0.9rem !important;
+.table .totalCost {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--on-telop);
 }
 
 @media (max-width: 768px) {
   .phaseCol { display: none; }
+  .table td, .table tbody th, .table thead th { padding: 0.7rem 0.75rem; }
 }

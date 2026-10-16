@@ -1,3 +1,5 @@
+import SectionHeading from './SectionHeading';
+import SpecList from './SpecList';
 import styles from './Interior.module.css';
 
 const features = [
@@ -14,29 +16,20 @@ const features = [
 export default function Interior() {
   return (
     <section id="interior" className="section-base">
-      <div className="section-label reveal">Cockpit Technology</div>
-      <h2 className="section-title reveal">Shift Sync — Smart Gear Knob</h2>
-      <p className={`reveal ${styles.intro}`}>
+      <SectionHeading title="Shift Sync Smart Gear Knob" ja="室内" />
+      <p className="lede">
         A manual-swapped Crown deserves a shifter that earns attention. The Shift Sync is the world&apos;s first carbon fibre OLED shift knob — and it&apos;s exactly the kind of detail that makes this build feel intentional rather than accidental.
       </p>
 
-      <div className={`${styles.grid} reveal`}>
-        <div className={styles.specBlock}>
-          <div className={styles.blockTitle}>Shift Sync — Feature Set</div>
-          {features.map(({ key, val, highlight }) => (
-            <div className={styles.row} key={key}>
-              <span className={styles.key}>{key}</span>
-              <span className={`${styles.val} ${highlight ? styles.highlight : ''}`}>{val}</span>
-            </div>
-          ))}
-        </div>
+      <div className={styles.grid}>
+        <SpecList title="Shift Sync feature set" rows={features} />
 
-        <div className={`${styles.whyCard} reveal`} style={{ transitionDelay: '0.1s' }}>
-          <div className={styles.whyTitle}>Why It Works</div>
+        <div className={styles.whyCard}>
+          <h3 className={styles.whyTitle}>Why it works</h3>
           <p>
             You&apos;re adding a manual swap specifically to connect with the drive. The Shift Sync puts a live 0–60 timer and G-meter literally in your hand — that&apos;s not a gimmick, that&apos;s data at the point of contact. The motion-reactive display responding to your inputs is the kind of detail that makes the interior feel built rather than assembled.
           </p>
-          <p style={{ marginTop: '1rem' }}>
+          <p>
             On a car this understated on the outside, the interior details carry the story. Carbon fibre OLED knob + clean OEM+ dash = a cockpit that communicates intent without screaming it.
           </p>
           <div className={styles.link}>
@@ -45,7 +38,7 @@ export default function Interior() {
               target="_blank"
               rel="noreferrer"
             >
-              shiftsync.tech ↗
+              Shift Sync product page
             </a>
           </div>
         </div>

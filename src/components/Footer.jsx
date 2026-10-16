@@ -1,10 +1,10 @@
 import styles from './Footer.module.css';
 
-export default function Footer() {
+export default function Footer({ body }) {
   return (
     <footer className={styles.footer}>
-      <div className={styles.logo}>JZS171W — Crown Athlete V Estate Build Spec · Theoretical</div>
-      <div className={styles.chassis}>クラウン アスリート V エステート</div>
+      <p>{body.chassis} Crown Athlete V {body.name}. A theoretical build spec.</p>
+      <p className={styles.ja} lang="ja">クラウン アスリート V {body.ja}</p>
     </footer>
   );
 }

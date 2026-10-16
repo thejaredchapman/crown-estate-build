@@ -1,8 +1,16 @@
+import SectionHeading from './SectionHeading';
 import styles from './BuildPhases.module.css';
+
+// body-specific lines carry one entry per body id
+const springLine = {
+  estate: 'Coilovers or lowering springs: rear rate sized for 1,680 kg plus a loaded cargo bay',
+  sedan: 'Coilovers or lowering springs: rear rate sized for 1,600 kg; Estate-spec kits will ride stiff',
+};
 
 const phases = [
   {
     num: '01',
+    ja: '第一段階',
     title: 'Manual Conversion',
     items: [
       'R154 5-speed from JZX100 Chaser/Mark II',
@@ -18,8 +26,8 @@ const phases = [
   },
   {
     num: '02',
+    ja: '第二段階',
     title: '1.5JZ Power Build',
-    delay: '0.1s',
     items: [
       'Stroker crankshaft — 77–84mm throw (vs stock 71.5mm)',
       'Forged H-beam connecting rods (set of 6)',
@@ -37,46 +45,45 @@ const phases = [
   },
   {
     num: '03',
+    ja: '第三段階',
     title: 'Driveline & Chassis',
-    delay: '0.2s',
     items: [
       'BRZ / Toyota 86 "G-series" Torsen LSD swap — documented bolt-in to JZS platform',
       'Stub axle transfer from Crown diff to BRZ carrier',
       'Rear diff fluid refresh (GL-5 75w-80)',
       'Suspension refresh — poly bushings throughout',
-      'Mild lowering springs or coilovers (optional)',
+      springLine,
       'Fresh wheel bearing & brake service',
       'Wider, stickier rubber on factory 16" alloys',
     ],
   },
 ];
 
-export default function BuildPhases() {
+export default function BuildPhases({ body }) {
   return (
     <section id="build" className="section-base">
-      <div className="section-label reveal">Build Strategy</div>
-      <h2 className="section-title reveal">Three-Phase Conversion</h2>
-      <p className={`reveal ${styles.intro}`}>
-        The JZS171W never left the factory with a manual. This build corrects that. Each phase is designed to stand on its own — drive it between stages. Phase 2 is the full 1.5JZ engine build: stroker bottom end, turbo, and tune done together while the engine is out.
+      <SectionHeading title="Three-Phase Conversion" ja="製作計画" />
+      <p className="lede">
+        The {body.chassis} never left the factory with a manual. This build corrects that. Each phase stands on its own, so the car stays drivable between stages. Phase 2 is the full 1.5JZ engine build: stroker bottom end, turbo and tune done together while the engine is out.
       </p>
 
-      <div className={styles.grid}>
+      <ol className={styles.grid}>
         {phases.map((phase) => (
-          <div
-            key={phase.num}
-            className={`${styles.card} reveal`}
-            style={phase.delay ? { transitionDelay: phase.delay } : undefined}
-          >
-            <div className={styles.num}>{phase.num}</div>
-            <div className={styles.title}>{phase.title}</div>
+          <li key={phase.num} className={styles.card}>
+            <div className={styles.head}>
+              <span className={styles.num}>{phase.num}</span>
+              <span className={styles.ja} lang="ja">{phase.ja}</span>
+            </div>
+            <h3 className={styles.title}>{phase.title}</h3>
             <ul className={styles.items}>
-              {phase.items.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
+              {phase.items.map((item) => {
+                const text = typeof item === 'string' ? item : item[body.id];
+                return <li key={text}>{text}</li>;
+              })}
             </ul>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   );
 }
